@@ -26,8 +26,8 @@ updatedweights = gdo.minimize(loss)
 
 def main():
     GAMMA = 0.9
-    EPSILON = 0.1
-    EPISODES = 500
+    EPSILON = 0.8
+    EPISODES = 2000
 
     total_Reward = 0
 
@@ -67,5 +67,4 @@ def main():
     print("Score over time: " + str(sum(rList) / EPISODES))
 
 
-if __name__ == "__main__":
-    main()
+main()
