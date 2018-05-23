@@ -12,7 +12,7 @@ def main():
     Q = np.zeros([env.observation_space.n, env.action_space.n])
     # Set learning parameters
     lr = .8
-    GAMMA = .90
+    y = .9
     EPISODES = 2000
     # create lists to contain total rewards and steps per episode
     # jList = []
@@ -31,7 +31,9 @@ def main():
             # Get new state and reward from environment
             s1, r, d, _ = env.step(a)
             # Update Q-Table with new knowledge
-            Q[s, a] = Q[s, a] + lr * (r + GAMMA * np.max(Q[s1, :]) - Q[s, a])
+            Q[s, a] = Q[s, a] + lr * (r + y * np.max(Q[s1, :]) - Q[s, a])
+            if r == 1:
+                print ('Episode {} was successful, Agent reached the Goal'.format(i))
             rAll += r
             s = s1
             if d == True:
@@ -43,6 +45,6 @@ def main():
     print("Final Q-Table Values")
     print(Q)
 
-    
+
 
 main()
